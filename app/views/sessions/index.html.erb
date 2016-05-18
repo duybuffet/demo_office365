@@ -1,0 +1,18 @@
+<div class="row">
+  <br>
+  <% if current_user.nil? %>
+    <%= link_to "Sign in with office365 account", "/auth/azure_oauth2", class: "btn btn-primary col-md-8 col-md-offset-2" %>
+  <% else %>
+    <div class="col-md-offset-8 col-md-2">
+      <%= link_to "Sign out", sessions_path, method: :delete, class: "btn btn-danger" %>
+    </div>
+    <div class="col-md-offset-2 col-md-8">
+      <h1>Welcome <%= @name %> with email: <%= @email %></h1>
+      <p>You're now connected to Office 365. Click the mail icon below to send a message from your account using the Microsoft Graph.
+      </p>
+      <br>
+    </div>
+    <%= link_to "Renew access_token", sessions_path, method: :put,
+      class: "btn btn-default col-md-offset-2 col-md-8" %>
+  <% end %>
+</div>
